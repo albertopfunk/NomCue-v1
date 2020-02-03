@@ -1,0 +1,218 @@
+{
+  "activities": [
+    {
+      "title": "Performing Arts",
+      "description": "Some description",
+      "categoryIdentifier": "theater",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Cinema",
+      "description": "Some description",
+      "categoryIdentifier": "movietheaters",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Drive-In Theater",
+      "description": "Some description",
+      "categoryIdentifier": "driveintheater",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Outdoor Movies",
+      "description": "Some description",
+      "categoryIdentifier": "outdoormovies",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Amusement Parks",
+      "description": "Some description",
+      "categoryIdentifier": "amusementparks",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Cultural Centers",
+      "description": "Some description",
+      "categoryIdentifier": "culturalcenter",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Festivals",
+      "description": "Some description",
+      "categoryIdentifier": "festivals",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Haunted Houses",
+      "description": "Some description",
+      "categoryIdentifier": "hauntedhouses",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Hot Air Ballons",
+      "description": "Some description",
+      "categoryIdentifier": "hot_air_balloons",
+      "image_url": "url",
+      "tags": ["air"]
+    },
+    {
+      "title": "Parasailing",
+      "description": "Some description",
+      "categoryIdentifier": "parasailing",
+      "image_url": "url",
+      "tags": ["air"]
+    }
+  ],
+  "food": [
+    {
+      "title": "Fast Food",
+      "description": "Some description",
+      "categoryIdentifier": "hotdogs",
+      "image_url": "url",
+      "tags": ["western cuisine"]
+    },
+    {
+      "title": "Hot Dogs",
+      "description": "Some description",
+      "categoryIdentifier": "hotdog",
+      "image_url": "url",
+      "tags": ["western cuisine", "grilling"]
+    },
+    {
+      "title": "Pizza",
+      "description": "Some description",
+      "categoryIdentifier": "pizza",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Burgers",
+      "description": "Some description",
+      "categoryIdentifier": "burgers",
+      "image_url": "url",
+      "tags": ["western cuisine", "grilling"]
+    },
+    {
+      "title": "Chicken Wings",
+      "description": "Some description",
+      "categoryIdentifier": "chicken_wings",
+      "image_url": "url",
+      "tags": ["grilling"]
+    },
+    {
+      "title": "Noodles",
+      "description": "Some description",
+      "categoryIdentifier": "noodles",
+      "image_url": "url",
+      "tags": ["eastern cuisine", "hot meal"]
+    },
+    {
+      "title": "Ramen",
+      "description": "Some description",
+      "categoryIdentifier": "ramen",
+      "image_url": "url",
+      "tags": ["eastern cuisine", "hot meal"]
+    },
+    {
+      "title": "Sandwiches",
+      "description": "Some description",
+      "categoryIdentifier": "sandwiches",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Salad",
+      "description": "Some description",
+      "categoryIdentifier": "salad",
+      "image_url": "url",
+      "tags": ["healthy"]
+    },
+    {
+      "title": "Barbeque",
+      "description": "Some description",
+      "categoryIdentifier": "bbq",
+      "image_url": "url",
+      "tags": ["grilling"]
+    }
+  ],
+  "nightlife": [
+    {
+      "title": "Bars",
+      "description": "Some description",
+      "categoryIdentifier": "bars",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Lounges",
+      "description": "Some description",
+      "categoryIdentifier": "lounges",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Hookah Bars",
+      "description": "Some description",
+      "categoryIdentifier": "hookah_bars",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Cigar Bars",
+      "description": "Some description",
+      "categoryIdentifier": "cigarbars",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Tiki Bars",
+      "description": "Some description",
+      "categoryIdentifier": "tikibars",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Sports Bars",
+      "description": "Some description",
+      "categoryIdentifier": "sportsbars",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Beer Bars",
+      "description": "Some description",
+      "categoryIdentifier": "beerbar",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Whiskey Bars",
+      "description": "Some description",
+      "categoryIdentifier": "whiskeybars",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Cocktail Bars",
+      "description": "Some description",
+      "categoryIdentifier": "cocktailbars",
+      "image_url": "url",
+      "tags": ["some tags"]
+    },
+    {
+      "title": "Wine Bars",
+      "description": "Some description",
+      "categoryIdentifier": "wine_bars",
+      "image_url": "url",
+      "tags": ["some tags"]
+    }
+  ]
+}

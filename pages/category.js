@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Error from './_error.js';
 import {UserContext} from '../global/UserContext'
 import fetch from 'isomorphic-unfetch';
 
@@ -35,7 +36,8 @@ function Category(props) {
 
 
   if (props.error) {
-    console.log("ERROR")
+    console.log("ERROR", props.error.status)
+    return <Error statusCode={props.error.status} />
   } else {
     console.log(props.categories)
     props.categories.forEach((item) => console.log(item.categoryIdentifier))
@@ -76,15 +78,17 @@ Category.getInitialProps = async function(context) {
     const res = await fetch(`http://localhost:3000/api/subCategories?name=${name}`);
     const categories = await res.json();
 
-    if (res.status === 400) {
-      throw categories.message
+    if (res.status !== 200) {
+      throw {status: res.status, message: categories.message}
     }
+    
     return {categories};
-
+    
   } catch(error) {
-    console.error("Error =>", error)
+    console.error("Error =>", error.message)
     return {error}
   }
 };
 
 export default Category
+

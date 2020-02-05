@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
+import Link from 'next/link';
 import {UserContext} from '../global/UserContext'
 
 
@@ -11,6 +12,7 @@ import {UserContext} from '../global/UserContext'
 
 function index() {
   const {location, setLocation} = useContext(UserContext)
+  const [category, setCategory] = useState("")
 
   console.log("=====HOME=====")
 
@@ -19,6 +21,13 @@ function index() {
     <div>
       <h1>Hello Home</h1>
 
+      {category ?
+        <Link href={`/category?name=${category}`}>
+          <a>{category}</a>
+        </Link>
+        :
+        <p>Choose a category</p>
+      }
 
       <select onChange={e => setCategory(e.target.value)} name="categories">
         <option value="">--Select--</option>

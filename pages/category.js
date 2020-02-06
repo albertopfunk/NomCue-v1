@@ -52,17 +52,16 @@ check category in cache
 */
 
 
-
-
 function Category(props) {
   const router = useRouter();
   const { location, setLocation } = useContext(UserContext);
   const [subCategory, setSubCategory] = useState({});
   const [usedSubCategories, setUsedSubCategories] = useState({});
+  const [usedtracker, setUsedtracker] = useState(0);
 
 
-  console.log("=====CATEGORY CATEGORIES=====", props.categories);
-  console.log("=====CATEGORY CHOSEN=====", subCategory);
+  console.log("=====CATEGORY CATEGORIES=====", props.categories.length);
+  console.log("=====CATEGORY T=====", usedtracker);
   console.log("=====CATEGORY CACHE=====", usedSubCategories);
 
   function chooseCategory() {
@@ -71,11 +70,12 @@ function Category(props) {
     let index;
     let chosen;
     let chosenName;
+    let complete = false;
 
-    while(shouldKeepChecking) {
+    while(shouldKeepChecking && !complete) {
 
       console.log("CATEGORIES", props.categories)
-      index = Math.floor(Math.random() * (props.categories.length)) + 0; //The maximum is exclusive and the minimum is inclusive
+      index = Math.floor(Math.random() * (props.categories.length)) + 0;
       console.log("RAND INDEX", index)
       chosen = props.categories[index]
       console.log("CHOSEN", chosen)
@@ -87,14 +87,28 @@ function Category(props) {
       } else {
         shouldKeepChecking = false;
       }
+
+      if (usedtracker > props.categories.length - 1) {
+        complete = true
+        shouldKeepChecking = false
+      }
+    }
+
+    if (complete) {
+      setUsedSubCategories({[chosenName]:chosen})
+      setUsedtracker(1)
+    } else {
+      setUsedSubCategories({...usedSubCategories, [chosenName]:chosen})  
+      setUsedtracker(usedtracker + 1)
     }
 
     setSubCategory(chosen)
-    setUsedSubCategories({...usedSubCategories, [chosenName]:chosen})
   }
 
   useEffect(() => {
-    chooseCategory();
+    if (location) {
+      chooseCategory();
+    }
   }, [location])
 
 

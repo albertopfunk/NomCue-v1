@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import fetch from "isomorphic-unfetch";
@@ -24,12 +24,79 @@ import { UserContext } from "../components/global/UserContext";
 
 // what if location is not present?
 
+
+
+
+
+/*
+
+Random card algo
+
+List of categories
+Grab 1 random category from list
+must not be duplicate
+
+// Solution
+cache
+
+choose random number between list len
+use that number to choose category from list
+check category in cache
+  if in cache
+    skip
+  if not in cache
+    add to cache
+    choose category
+-
+
+*/
+
+
+
+
 function Category(props) {
   const router = useRouter();
   const { location, setLocation } = useContext(UserContext);
-  const [subCategory, setSubCategory] = useState("");
+  const [subCategory, setSubCategory] = useState({});
+  const [usedSubCategories, setUsedSubCategories] = useState({});
 
-  console.log("=====CATEGORY=====", router.query.name);
+
+  console.log("=====CATEGORY CATEGORIES=====", props.categories);
+  console.log("=====CATEGORY CHOSEN=====", subCategory);
+  console.log("=====CATEGORY CACHE=====", usedSubCategories);
+
+  function chooseCategory() {
+    if (props.error || !location) return;
+    let shouldKeepChecking = true;
+    let index;
+    let chosen;
+    let chosenName;
+
+    while(shouldKeepChecking) {
+
+      console.log("CATEGORIES", props.categories)
+      index = Math.floor(Math.random() * (props.categories.length)) + 0; //The maximum is exclusive and the minimum is inclusive
+      console.log("RAND INDEX", index)
+      chosen = props.categories[index]
+      console.log("CHOSEN", chosen)
+      chosenName = chosen.categoryIdentifier
+      console.log("CHOSEN NAME", chosenName)
+
+      if (usedSubCategories[chosenName]) {
+        shouldKeepChecking = true;
+      } else {
+        shouldKeepChecking = false;
+      }
+    }
+
+    setSubCategory(chosen)
+    setUsedSubCategories({...usedSubCategories, [chosenName]:chosen})
+  }
+
+  useEffect(() => {
+    chooseCategory();
+  }, [location])
+
 
   if (props.error) {
     return <Error statusCode={props.error.status} />;
@@ -44,32 +111,29 @@ function Category(props) {
     );
   }
 
-  props.categories.forEach(item => console.log(item.categoryIdentifier));
 
   return (
     <div>
       <h1>Hello Category</h1>
 
       <p>Chosen Main Category: {router.query.name}</p>
-      <p>Chosen Sub Category: {subCategory}</p>
+      <p>Chosen Sub Category: {subCategory.categoryIdentifier}</p>
 
       {subCategory ? (
-        <Link href={`/info?id=${subCategory}`}>
-          <a>{`Go To ${subCategory}`}</a>
+        <Link href={`/info?id=${subCategory.categoryIdentifier}`}>
+          <a>{`Go To ${subCategory.title}`}</a>
         </Link>
       ) : (
         <p>Choose a sub category</p>
       )}
-
-      <button onClick={() => setSubCategory("burgers")}>
-        SET SUB CATEGORY
-      </button>
 
       {!location ? (
         <button onClick={() => setLocation("LA")}>SET LOCATION</button>
       ) : (
         <p>Location Set!</p>
       )}
+
+      <button onClick={chooseCategory}>SHOW ME THE MONEY</button>
     </div>
   );
 }

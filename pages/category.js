@@ -30,19 +30,23 @@ function Category(props) {
   const router = useRouter();
   const {location, setLocation} = useContext(UserContext)
   const [subCategory, setSubCategory] = useState("")
-  
 
   console.log("=====CATEGORY=====", router.query.name)
 
-
   if (props.error) {
-    console.log("ERROR", props.error.status)
     return <Error statusCode={props.error.status} />
-  } else {
-    console.log(props.categories)
-    props.categories.forEach((item) => console.log(item.categoryIdentifier))
   }
 
+  if (!location) {
+    return (
+      <div>
+        <h2>Need Location</h2>
+        <button onClick={() => setLocation("LA")}>Choose Location</button>
+      </div>
+    )
+  }
+
+  props.categories.forEach((item) => console.log(item.categoryIdentifier))
 
   return (
     <div>

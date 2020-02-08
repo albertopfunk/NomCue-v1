@@ -1,16 +1,4 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@now/next"
-    }
-  ],
-  "env": {
-    "YELP_URL": "@yelp-url",
-    "YELP_KEY": "@yelp-key",
-    "CLIENT_URL": "@prod-url"
-  },
   "build": {
     "env": {
       "YELP_URL": "@yelp-url",

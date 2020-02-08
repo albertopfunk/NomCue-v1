@@ -20,7 +20,11 @@ function InfoPage() {
       const categories = await res.json();
 
       if (res.status !== 200) {
-        throw { status: res.status };
+        throw {
+          status: res.status,
+          message: categories.message,
+          errType: categories.errType
+        };
       }
 
       setLoadingPlaces(false);

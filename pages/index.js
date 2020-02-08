@@ -32,7 +32,9 @@ function index() {
       </select>
 
       {!location ? (
-        <button onClick={() => setLocation("LA")}>SET LOCATION</button>
+        <button onClick={() => setLocation("Los Angeles, CA")}>
+          SET LOCATION
+        </button>
       ) : (
         <p>Location Set!</p>
       )}

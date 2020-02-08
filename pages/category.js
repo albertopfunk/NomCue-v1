@@ -22,12 +22,6 @@ import { UserContext } from "../components/global/UserContext";
 // to render this page
 // location will still need to be updated
 
-// what if location is not present?
-
-
-
-
-
 /*
 
 Random card algo
@@ -51,7 +45,6 @@ check category in cache
 
 */
 
-
 function Category(props) {
   const router = useRouter();
   const { location, setLocation } = useContext(UserContext);
@@ -59,28 +52,19 @@ function Category(props) {
   const [usedSubCategories, setUsedSubCategories] = useState({});
   const [usedtracker, setUsedtracker] = useState(0);
 
-
-  console.log("=====CATEGORY CATEGORIES=====", props.categories.length);
-  console.log("=====CATEGORY T=====", usedtracker);
-  console.log("=====CATEGORY CACHE=====", usedSubCategories);
+  console.log("=====CATEGORY=====");
 
   function chooseCategory() {
-    if (props.error || !location) return;
     let shouldKeepChecking = true;
     let index;
     let chosen;
     let chosenName;
     let complete = false;
 
-    while(shouldKeepChecking && !complete) {
-
-      console.log("CATEGORIES", props.categories)
-      index = Math.floor(Math.random() * (props.categories.length)) + 0;
-      console.log("RAND INDEX", index)
-      chosen = props.categories[index]
-      console.log("CHOSEN", chosen)
-      chosenName = chosen.categoryIdentifier
-      console.log("CHOSEN NAME", chosenName)
+    while (shouldKeepChecking && !complete) {
+      index = Math.floor(Math.random() * props.categories.length) + 0;
+      chosen = props.categories[index];
+      chosenName = chosen.categoryIdentifier;
 
       if (usedSubCategories[chosenName]) {
         shouldKeepChecking = true;
@@ -89,42 +73,42 @@ function Category(props) {
       }
 
       if (usedtracker > props.categories.length - 1) {
-        complete = true
-        shouldKeepChecking = false
+        complete = true;
+        shouldKeepChecking = false;
       }
     }
 
     if (complete) {
-      setUsedSubCategories({[chosenName]:chosen})
-      setUsedtracker(1)
+      setUsedSubCategories({ [chosenName]: chosen });
+      setUsedtracker(1);
     } else {
-      setUsedSubCategories({...usedSubCategories, [chosenName]:chosen})  
-      setUsedtracker(usedtracker + 1)
+      setUsedSubCategories({ ...usedSubCategories, [chosenName]: chosen });
+      setUsedtracker(usedtracker + 1);
     }
 
-    setSubCategory(chosen)
+    setSubCategory(chosen);
   }
 
   useEffect(() => {
-    if (location) {
+    if (!props.error && location) {
       chooseCategory();
     }
-  }, [location])
-
+  }, [location]);
 
   if (props.error) {
-    return <Error statusCode={props.error.status} />;
+    return <Error statusCode={props.error.status} message={props.error.message} />;
   }
 
   if (!location) {
     return (
       <div>
         <h2>Need Location</h2>
-        <button onClick={() => setLocation("LA")}>Choose Location</button>
+        <button onClick={() => setLocation("Los Angeles, CA")}>
+          Choose Location
+        </button>
       </div>
     );
   }
-
 
   return (
     <div>
@@ -141,12 +125,6 @@ function Category(props) {
         <p>Choose a sub category</p>
       )}
 
-      {!location ? (
-        <button onClick={() => setLocation("LA")}>SET LOCATION</button>
-      ) : (
-        <p>Location Set!</p>
-      )}
-
       <button onClick={chooseCategory}>SHOW ME THE MONEY</button>
     </div>
   );
@@ -154,6 +132,15 @@ function Category(props) {
 
 Category.getInitialProps = async function(context) {
   const { name } = context.query;
+
+  if (!name) {
+    return {
+      error: {
+        status: 400,
+        message: 'missing category name'
+      }
+    }
+  }
 
   try {
     const res = await fetch(
@@ -167,7 +154,7 @@ Category.getInitialProps = async function(context) {
 
     return { categories };
   } catch (error) {
-    console.error("Error =>", error.message);
+    console.error("Error =>", error);
     return { error };
   }
 };

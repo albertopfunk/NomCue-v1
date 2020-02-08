@@ -8,12 +8,14 @@
   ],
   "env": {
     "YELP_URL": "@yelp-url",
-    "YELP_KEY": "@yelp-key"
+    "YELP_KEY": "@yelp-key",
+    "CLIENT_URL": "@prod-url"
   },
   "build": {
     "env": {
       "YELP_URL": "@yelp-url",
-      "YELP_KEY": "@yelp-key"
+      "YELP_KEY": "@yelp-key",
+      "CLIENT_URL": "@prod-url"
     }
   }
 }

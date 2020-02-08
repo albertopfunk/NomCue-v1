@@ -23,7 +23,7 @@ function InfoPage() {
 
   async function fetchYelpPlaces() {
     try {
-      const res = await fetch(`http://localhost:3000/api/yelpPlaces`, {
+      const res = await fetch(`${process.env.CLIENT_URL}/api/yelpPlaces`, {
         method: "POST",
         body: JSON.stringify({ id: router.query.id, location })
       });

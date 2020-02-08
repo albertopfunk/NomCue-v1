@@ -144,7 +144,7 @@ Category.getInitialProps = async function(context) {
 
   try {
     const res = await fetch(
-      `http://localhost:3000/api/subCategories?name=${name}`
+      `${process.env.CLIENT_URL}/api/subCategories?name=${name}`
     );
     const categories = await res.json();
 

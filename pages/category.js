@@ -18,9 +18,10 @@ function Category(props) {
     let chosen;
     let chosenName;
     let complete = false;
+    let maxShouldCheck = 15;
 
     while (shouldKeepChecking && !complete) {
-      index = Math.floor(Math.random() * props.categories.length) + 0;
+      index = Math.floor(Math.random() * props.categories.length);
       chosen = props.categories[index];
       chosenName = chosen.categoryIdentifier;
 
@@ -30,10 +31,15 @@ function Category(props) {
         shouldKeepChecking = false;
       }
 
+      if (maxShouldCheck < 0) {
+        shouldKeepChecking = false
+      }
+
       if (usedtracker > props.categories.length - 1) {
         complete = true;
         shouldKeepChecking = false;
       }
+      maxShouldCheck--
     }
 
     if (complete) {
@@ -69,6 +75,8 @@ function Category(props) {
       </div>
     );
   }
+
+  console.log("====category====", subCategory);
 
   return (
     <div>

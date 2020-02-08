@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
 import Link from "next/link";
 import { UserContext } from "../components/global/UserContext";
+import LocationAutocomplete from "../components/LocationAutocomplete";
 
 function index() {
-  const { location, setLocation } = useContext(UserContext);
+  const { location } = useContext(UserContext);
   const [category, setCategory] = useState("");
 
   return (
@@ -25,13 +26,7 @@ function index() {
         <option value="activities">Activities</option>
       </select>
 
-      {!location ? (
-        <button onClick={() => setLocation("Los Angeles, CA")}>
-          SET LOCATION
-        </button>
-      ) : (
-        <p>Location Set!</p>
-      )}
+      {!location ? <LocationAutocomplete id="home" /> : <p>Location Set!</p>}
     </div>
   );
 }

@@ -13,40 +13,35 @@ class AppWrapper extends App {
   componentDidMount() {
     this.setState({ isLoading: false });
 
-    Router.events.on("routeChangeStart", url => {
-      console.log(`routeChangeStart ON: ${url}`);
+    Router.events.on("routeChangeStart", () => {
       this.setState({ isLoading: true });
     });
 
-    Router.events.on("routeChangeComplete", url => {
-      console.log(`routeChangeComplete ON: ${url}`);
+    Router.events.on("routeChangeComplete", () => {
       this.setState({ isLoading: false });
     });
 
-    Router.events.on("routeChangeError", url => {
-      console.log(`routeChangeError ON: ${url}`);
+    Router.events.on("routeChangeError", () => {
       this.setState({ isLoading: false });
     });
   }
 
   componentWillUnmount() {
-    Router.events.off("routeChangeStart", url => {
-      console.log(`routeChangeStart OFF: ${url}`);
+    Router.events.off("routeChangeStart", () => {
+      return;
     });
 
-    Router.events.off("routeChangeComplete", url => {
-      console.log(`routeChangeComplete OFF: ${url}`);
+    Router.events.off("routeChangeComplete", () => {
+      return;
     });
 
-    Router.events.off("routeChangeError", url => {
-      console.log(`routeChangeError OFF: ${url}`);
+    Router.events.off("routeChangeError", () => {
+      return;
     });
   }
 
   render() {
     const { Component, pageProps } = this.props;
-
-    console.log("=====HELLO MAIN_APP=====", this.state);
 
     return (
       <UserContextProvider>

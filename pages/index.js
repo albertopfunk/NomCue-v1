@@ -2,15 +2,9 @@ import React, { useState, useContext } from "react";
 import Link from "next/link";
 import { UserContext } from "../components/global/UserContext";
 
-//* Home Page
-// user sets location
-// user sets chosen main category
-
 function index() {
   const { location, setLocation } = useContext(UserContext);
   const [category, setCategory] = useState("");
-
-  console.log("=====HOME=====");
 
   return (
     <div>

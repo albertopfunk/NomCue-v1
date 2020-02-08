@@ -5,54 +5,12 @@ import fetch from "isomorphic-unfetch";
 import Error from "./_error.js";
 import { UserContext } from "../components/global/UserContext";
 
-//* Category Page
-//! user location must be present
-//! category will always be present since it is part of the URL
-// user chooses sub category based on random choices
-
-// random choices will be based on router.query.name(main category)
-
-//! have data stored in a json file
-// use *getInitialProps* to get the subCategories with the chosen main category
-// you can keep subCategories in local state
-// use local state to show 1 random category at a time, while
-// keeping track of categories that have already been shown
-
-// since this just uses the params, if user refreshes, this module can still use the params
-// to render this page
-// location will still need to be updated
-
-/*
-
-Random card algo
-
-List of categories
-Grab 1 random category from list
-must not be duplicate
-
-// Solution
-cache
-
-choose random number between list len
-use that number to choose category from list
-check category in cache
-  if in cache
-    skip
-  if not in cache
-    add to cache
-    choose category
--
-
-*/
-
 function Category(props) {
   const router = useRouter();
   const { location, setLocation } = useContext(UserContext);
   const [subCategory, setSubCategory] = useState({});
   const [usedSubCategories, setUsedSubCategories] = useState({});
   const [usedtracker, setUsedtracker] = useState(0);
-
-  console.log("=====CATEGORY=====");
 
   function chooseCategory() {
     let shouldKeepChecking = true;
@@ -96,7 +54,9 @@ function Category(props) {
   }, [location]);
 
   if (props.error) {
-    return <Error statusCode={props.error.status} message={props.error.message} />;
+    return (
+      <Error statusCode={props.error.status} message={props.error.message} />
+    );
   }
 
   if (!location) {
@@ -137,9 +97,9 @@ Category.getInitialProps = async function(context) {
     return {
       error: {
         status: 400,
-        message: 'missing category name'
+        message: "missing category name"
       }
-    }
+    };
   }
 
   try {

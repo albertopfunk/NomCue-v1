@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/next"
+    }
+  ],
+  "env": {
+    "YELP_URL": "@yelp-url",
+    "YELP_KEY": "@yelp-key"
+  },
+  "build": {
+    "env": {
+      "YELP_URL": "@yelp-url",
+      "YELP_KEY": "@yelp-key"
+    }
+  }
+}

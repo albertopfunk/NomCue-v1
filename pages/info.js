@@ -38,6 +38,7 @@ function InfoPage() {
       
     } catch(error) {
       console.error("Error =>", error);
+      setLoadingPlaces(false);
       setPlacesError(true)
     }
   }

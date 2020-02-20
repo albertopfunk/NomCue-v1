@@ -1,19 +1,115 @@
 import React, { useContext, useState } from "react";
+import fetch from "isomorphic-unfetch";
 import { UserContext } from "./global/UserContext";
 
 function LocationAutocomplete(props) {
   const { setLocation } = useContext(UserContext);
-  const [locationInput, setLocationInput] = useState("");
-  const [predictions, setPredictions] = useState([]);
+  const [locationsInput, setLocationsInput] = useState("");
+  const [locations, setLocations] = useState([]);
   const [debounceTimeout, setDebounceTimeout] = useState(null);
+  const [focusedLocation, setFocusedLocation] = useState("");
+  const [isUsingCombobox, setIsUsingCombobox] = useState(false);
+
+  const locationRefs = [];
+
+  function setLocationRefs(element, index) {
+    locationRefs[index] = element;
+  }
+
+  function onInputKeyDown(e) {
+    if (locations.length === 0) {
+      return;
+    }
+
+    if (e.keyCode === 40) {
+      e.preventDefault();
+      if (locationRefs.length === 0) {
+        return;
+      }
+      focusOnOption("first");
+    }
+
+    if (e.keyCode === 27) {
+      resetAutocomplete();
+    }
+  }
+
+  function onOptionKeyDown(e, location, index) {
+    if (e.keyCode === 13) {
+      chooseLocation(location);
+    }
+    if (e.keyCode === 27) {
+      resetAutocomplete();
+    }
+
+    if (e.keyCode === 38) {
+      e.preventDefault();
+      focusOnOption("up", index);
+    }
+    if (e.keyCode === 40) {
+      e.preventDefault();
+      focusOnOption("down", index);
+    }
+  }
+
+  function focusOnOption(direction, index) {
+    if (direction === "first") {
+      setFocusedLocation(`location-${0}`);
+      locationRefs[0].focus();
+    }
+
+    if (direction === "up") {
+      if (index === 0) {
+        setFocusedLocation(`location-${locationRefs.length - 1}`);
+        locationRefs[locationRefs.length - 1].focus();
+      } else {
+        setFocusedLocation(`location-${index - 1}`);
+        locationRefs[index - 1].focus();
+      }
+    }
+
+    if (direction === "down") {
+      if (index === locationRefs.length - 1) {
+        setFocusedLocation(`location-${0}`);
+        locationRefs[0].focus();
+      } else {
+        setFocusedLocation(`location-${index + 1}`);
+        locationRefs[index + 1].focus();
+      }
+    }
+  }
 
   async function onInputChange(value) {
-    console.log("INPUT CHANGE", value);
-    setPredictions(["ONE", "TWO", "THREE"]);
+    if (value.trim() === "") {
+      setLocations([]);
+      setIsUsingCombobox(false);
+      return;
+    }
+
+    try {
+      const res = await fetch(
+        `${process.env.CLIENT_URL}/api/googleAutocomplete`,
+        {
+          method: "POST",
+          body: JSON.stringify({ value })
+        }
+      );
+      const json = await res.json();
+
+      if (res.status !== 200) {
+        throw {
+          status: res.status
+        };
+      }
+
+      setLocations(json.predictions);
+      setIsUsingCombobox(true);
+    } catch (error) {
+      console.error("Error =>", error);
+    }
   }
 
   function debounceInput(e) {
-    console.log("DEBOUNCE", e);
     let currentTimeout;
 
     const { value } = e.target;
@@ -27,42 +123,64 @@ function LocationAutocomplete(props) {
       onInputChange(value);
     }, 250);
 
-    setLocationInput(value);
+    setLocationsInput(value);
     setDebounceTimeout(currentTimeout);
   }
 
-  function choosePrediction(name) {
-    console.log("CHOOSE", name);
+  function chooseLocation(name) {
+    setLocationsInput("");
+    setLocations([]);
+    setIsUsingCombobox(false);
     setLocation(name);
+  }
+
+  function resetAutocomplete() {
+    setLocationsInput("");
+    setLocations([]);
+    setIsUsingCombobox(false);
   }
 
   return (
     <div>
       <div>
-        <label htmlFor={`${props.id}-search-predictions`}>
-          Choose Location:
-          <br />
-          <input
-            type="text"
-            id={`${props.id}-search-predictions`}
-            name="input"
-            value={locationInput}
-            onChange={e => debounceInput(e)}
-          />
-        </label>
+        <label htmlFor={`${props.id}-search-locations`}>Choose Location:</label>
+        <br />
+        <input
+          type="search"
+          id={`${props.id}-search-locations`}
+          name="input"
+          value={locationsInput}
+          autoComplete="off"
+          role="combobox"
+          aria-haspopup="listbox"
+          aria-controls="results"
+          aria-owns="results"
+          aria-autocomplete="list"
+          aria-expanded={isUsingCombobox}
+          aria-activedescendant={focusedLocation}
+          onChange={e => debounceInput(e)}
+          onKeyDown={e => onInputKeyDown(e)}
+        />
       </div>
 
-      <ul>
-        {predictions.length === 0
+      <ul id="results" role="listbox">
+        {locations.length === 0
           ? null
-          : predictions.map((prediction, i) => {
+          : locations.map((location, i) => {
               return (
-                // eslint-disable-next-line
                 <li
-                  key={prediction}
-                  onClick={() => choosePrediction("Los Angeles, CA")}
+                  id={`result-${i}`}
+                  key={location.id}
+                  tabIndex="-1"
+                  role="option"
+                  aria-selected={focusedLocation === `result-${i}`}
+                  onClick={() => chooseLocation(location.description)}
+                  ref={ref => {
+                    setLocationRefs(ref, i);
+                  }}
+                  onKeyDown={e => onOptionKeyDown(e, location.description, i)}
                 >
-                  {prediction}
+                  {location.description}
                 </li>
               );
             })}

@@ -32,14 +32,14 @@ function Category(props) {
       }
 
       if (maxShouldCheck < 0) {
-        shouldKeepChecking = false
+        shouldKeepChecking = false;
       }
 
       if (usedtracker > props.categories.length - 1) {
         complete = true;
         shouldKeepChecking = false;
       }
-      maxShouldCheck--
+      maxShouldCheck--;
     }
 
     if (complete) {

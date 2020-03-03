@@ -1,6 +1,5 @@
 import fetch from "isomorphic-unfetch";
 
-
 export default async (req, res) => {
   const { value } = JSON.parse(req.body);
   const key = process.env.GOOGLE_KEY;
@@ -9,7 +8,7 @@ export default async (req, res) => {
   try {
     const resp = await fetch(url);
     const categories = await resp.json();
-    
+
     if (resp.status !== 200) {
       const { error } = categories;
 

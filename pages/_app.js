@@ -1,7 +1,7 @@
 import App from "next/app";
 import Router from "next/router";
 import { UserContextProvider } from "../components/global/UserContext";
-import '../css/tailwind.css';
+import "../css/tailwind.css";
 
 class AppWrapper extends App {
   constructor(props) {
@@ -49,8 +49,8 @@ class AppWrapper extends App {
         {this.state.isLoading ? (
           <h1>LOADING....</h1>
         ) : (
-            <Component {...pageProps} />
-          )}
+          <Component {...pageProps} />
+        )}
       </UserContextProvider>
     );
   }

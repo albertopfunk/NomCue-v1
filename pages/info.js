@@ -61,9 +61,42 @@ function InfoPage() {
 
   if (placesError) return <h1>SKELETON ERROR...</h1>;
 
+  // name, is_closed, rating, price, location.display_address[0], location.display_address[0], image_url, url(yelp)
+
   return (
     <div>
       <h1>{router.query.id}</h1>
+      {places.length > 0 ? (
+        places.map(place => {
+          return (
+            <div key={place.id}>
+              <div>
+                <img
+                  src={place.image_url}
+                  alt={place.name}
+                  height="300px"
+                  width="300px"
+                />
+                <p>{place.name}</p>
+                <p>Open Now: {place.is_closed ? "No" : "Yes"}</p>
+                <p>Price: {place.price}</p>
+                <p>
+                  Location: {place.location.display_address[0]},{" "}
+                  {place.location.display_address[1]}
+                </p>
+                <a href={place.url}>
+                  <p>Yelp Link</p>
+                </a>
+              </div>
+              <br />
+              <hr />
+              <br />
+            </div>
+          );
+        })
+      ) : (
+        <p>No Places!</p>
+      )}
     </div>
   );
 }

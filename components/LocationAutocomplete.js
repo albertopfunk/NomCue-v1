@@ -146,6 +146,8 @@ function LocationAutocomplete(props) {
         <label htmlFor={`${props.id}-search-locations`}>Choose Location:</label>
         <br />
         <input
+          className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+          placeholder="jane@example.com"
           type="search"
           id={`${props.id}-search-locations`}
           name="input"

@@ -91,14 +91,14 @@ function LocationAutocomplete(props) {
         `${process.env.CLIENT_URL}/api/googleAutocomplete`,
         {
           method: "POST",
-          body: JSON.stringify({ value })
+          body: JSON.stringify({ value }),
         }
       );
       const json = await res.json();
 
       if (res.status !== 200) {
         throw {
-          status: res.status
+          status: res.status,
         };
       }
 
@@ -160,8 +160,8 @@ function LocationAutocomplete(props) {
           aria-autocomplete="list"
           aria-expanded={isUsingCombobox}
           aria-activedescendant={focusedLocation}
-          onChange={e => debounceInput(e)}
-          onKeyDown={e => onInputKeyDown(e)}
+          onChange={(e) => debounceInput(e)}
+          onKeyDown={(e) => onInputKeyDown(e)}
         />
       </div>
 
@@ -172,15 +172,15 @@ function LocationAutocomplete(props) {
               return (
                 <li
                   id={`result-${i}`}
-                  key={location.id}
+                  key={location.place_id}
                   tabIndex="-1"
                   role="option"
                   aria-selected={focusedLocation === `result-${i}`}
                   onClick={() => chooseLocation(location.description)}
-                  ref={ref => {
+                  ref={(ref) => {
                     setLocationRefs(ref, i);
                   }}
-                  onKeyDown={e => onOptionKeyDown(e, location.description, i)}
+                  onKeyDown={(e) => onOptionKeyDown(e, location.description, i)}
                 >
                   {location.description}
                 </li>

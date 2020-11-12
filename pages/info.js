@@ -15,7 +15,7 @@ function InfoPage() {
     try {
       const res = await fetch(`${process.env.CLIENT_URL}/api/yelpPlaces`, {
         method: "POST",
-        body: JSON.stringify({ id: router.query.id, location })
+        body: JSON.stringify({ id: router.query.id, location }),
       });
       const categories = await res.json();
 
@@ -23,7 +23,7 @@ function InfoPage() {
         throw {
           status: res.status,
           message: categories.message,
-          errType: categories.errType
+          errType: categories.errType,
         };
       }
 
@@ -67,7 +67,7 @@ function InfoPage() {
     <div>
       <h1>{router.query.id}</h1>
       {places.length > 0 ? (
-        places.map(place => {
+        places.map((place) => {
           return (
             <div key={place.id}>
               <div>

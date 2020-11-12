@@ -76,8 +76,6 @@ function Category(props) {
     );
   }
 
-  console.log("====category====", subCategory);
-
   return (
     <div>
       <h1>Hello Category</h1>
@@ -98,15 +96,15 @@ function Category(props) {
   );
 }
 
-Category.getInitialProps = async function(context) {
+Category.getInitialProps = async function (context) {
   const { name } = context.query;
 
   if (!name) {
     return {
       error: {
         status: 400,
-        message: "missing category name"
-      }
+        message: "missing category name",
+      },
     };
   }
 

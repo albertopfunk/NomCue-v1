@@ -14,7 +14,7 @@ export default async (req, res) => {
 
       return res.status(resp.status).json({
         message: "unable to retrieve Google places",
-        errType: error && error.code ? error.code : "UNK_GOOGLE_ERR"
+        errType: error && error.code ? error.code : "UNK_GOOGLE_ERR",
       });
     }
 
@@ -22,7 +22,7 @@ export default async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "unable to retrieve Google places",
-      errType: "SERVER_ERR"
+      errType: "SERVER_ERR",
     });
   }
 };

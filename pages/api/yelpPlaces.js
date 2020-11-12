@@ -13,8 +13,8 @@ export default async (req, res) => {
   const url = `${process.env.YELP_URL}?location=${location}&radius=40000&categories=${id}&limit=50`;
   const options = {
     headers: {
-      Authorization: `Bearer ${process.env.YELP_KEY}`
-    }
+      Authorization: `Bearer ${process.env.YELP_KEY}`,
+    },
   };
 
   try {
@@ -26,7 +26,7 @@ export default async (req, res) => {
 
       return res.status(resp.status).json({
         message: "unable to retrieve Yelp places",
-        errType: error && error.code ? error.code : "UNK_YELP_ERR"
+        errType: error && error.code ? error.code : "UNK_YELP_ERR",
       });
     }
 
@@ -34,7 +34,7 @@ export default async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "unable to retrieve Yelp places",
-      errType: "SERVER_ERR"
+      errType: "SERVER_ERR",
     });
   }
 };

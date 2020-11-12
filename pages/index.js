@@ -20,7 +20,7 @@ function index() {
         <p>Choose a category</p>
       )}
 
-      <select onChange={e => setCategory(e.target.value)} name="categories">
+      <select onChange={(e) => setCategory(e.target.value)} name="categories">
         <option value="">--Select--</option>
         <option value="food">Food</option>
         <option value="nightlife">Night Life</option>

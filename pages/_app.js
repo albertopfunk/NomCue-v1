@@ -1,59 +1,48 @@
-import App from "next/app";
-import Router from "next/router";
+import { useEffect, useState } from "react";
+import { useRouter } from 'next/router'
 import { UserContextProvider } from "../components/global/UserContext";
 import "../css/tailwind.css";
 
-class AppWrapper extends App {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: true
-    };
-  }
+function AppWrapper({ Component, pageProps }) {
+  const [isRouteLoading, setIsRouteLoading] = useState(false)
+  const router = useRouter()
 
-  componentDidMount() {
-    this.setState({ isLoading: false });
-
-    Router.events.on("routeChangeStart", () => {
-      this.setState({ isLoading: true });
+  useEffect(() => {
+    // setIsRouteLoading(false)
+    router.events.on("routeChangeStart", () => {
+      setIsRouteLoading(true)
+    });
+    router.events.on("routeChangeComplete", () => {
+      setIsRouteLoading(false)
+    });
+    router.events.on("routeChangeError", () => {
+      setIsRouteLoading(false)
     });
 
-    Router.events.on("routeChangeComplete", () => {
-      this.setState({ isLoading: false });
-    });
+    return () => {
+      router.events.off("routeChangeStart", () => {
+        return;
+      });
+  
+      router.events.off("routeChangeComplete", () => {
+        return;
+      });
+  
+      router.events.off("routeChangeError", () => {
+        return;
+      });
+    }
+  })
 
-    Router.events.on("routeChangeError", () => {
-      this.setState({ isLoading: false });
-    });
-  }
-
-  componentWillUnmount() {
-    Router.events.off("routeChangeStart", () => {
-      return;
-    });
-
-    Router.events.off("routeChangeComplete", () => {
-      return;
-    });
-
-    Router.events.off("routeChangeError", () => {
-      return;
-    });
-  }
-
-  render() {
-    const { Component, pageProps } = this.props;
-
-    return (
-      <UserContextProvider>
-        {this.state.isLoading ? (
-          <h1>LOADING....</h1>
-        ) : (
-          <Component {...pageProps} />
-        )}
-      </UserContextProvider>
-    );
-  }
+  return (
+    <UserContextProvider>
+      {isRouteLoading ? (
+        <h1>LOADING....</h1>
+      ) : (
+        <Component {...pageProps} />
+      )}
+    </UserContextProvider>
+  );
 }
 
 export default AppWrapper;

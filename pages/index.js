@@ -13,7 +13,7 @@ function index() {
       <h1>Hello Home</h1>
 
       {category ? (
-        <Link href={`/category?name=${category}`}>
+        <Link href={`/${category}`}>
           <a>{category}</a>
         </Link>
       ) : (
@@ -22,9 +22,8 @@ function index() {
 
       <select onChange={(e) => setCategory(e.target.value)} name="categories">
         <option value="">--Select--</option>
-        <option value="food">Food</option>
-        <option value="nightlife">Night Life</option>
-        <option value="activities">Activities</option>
+        <option value="food">food</option>
+        <option value="activities">activities</option>
       </select>
 
       {!location ? <LocationAutocomplete id="home" /> : <p>Location Set!</p>}

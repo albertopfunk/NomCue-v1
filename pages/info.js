@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import fetch from "isomorphic-unfetch";
-import Error from "./_error.js";
 import { UserContext } from "../components/global/UserContext";
 
 function InfoPage() {
@@ -10,7 +9,13 @@ function InfoPage() {
   const [loadingPlaces, setLoadingPlaces] = useState(true);
   const [placesError, setPlacesError] = useState(false);
   const [places, setPlaces] = useState([]);
-
+  
+  useEffect(() => {
+    if (location && router.query.id) {
+      fetchYelpPlaces();
+    }
+  }, [location]);
+  
   async function fetchYelpPlaces() {
     try {
       const res = await fetch(`${process.env.CLIENT_URL}/api/yelpPlaces`, {
@@ -36,14 +41,8 @@ function InfoPage() {
     }
   }
 
-  useEffect(() => {
-    if (location && router.query.id) {
-      fetchYelpPlaces();
-    }
-  }, [location]);
-
   if (!router.query.id) {
-    return <Error statusCode={400} message={"missing sub-category name"} />;
+    return <h1>Page Loading...</h1>
   }
 
   if (!location) {
@@ -56,7 +55,7 @@ function InfoPage() {
       </div>
     );
   }
-
+  
   if (loadingPlaces) return <h1>SKELETON Loading...</h1>;
 
   if (placesError) return <h1>SKELETON ERROR...</h1>;

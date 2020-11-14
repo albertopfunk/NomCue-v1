@@ -12,6 +12,12 @@ function Category(props) {
   const [usedSubCategories, setUsedSubCategories] = useState({});
   const [usedtracker, setUsedtracker] = useState(0);
 
+  useEffect(() => {
+    if (!props.error && location) {
+      chooseCategory();
+    }
+  }, [location]);
+
   function chooseCategory() {
     let shouldKeepChecking = true;
     let index;
@@ -52,12 +58,6 @@ function Category(props) {
 
     setSubCategory(chosen);
   }
-
-  useEffect(() => {
-    if (!props.error && location) {
-      chooseCategory();
-    }
-  }, [location]);
 
   if (props.error) {
     return (

@@ -1,0 +1,132 @@
+[
+  {
+    "title": "Italian Cuisine",
+    "description": "Some description",
+    "categoryIdentifiers": {
+      "yelp": "italian",
+      "google": {
+        "type": "restaurant",
+        "keyword": "italian"
+      }
+    },
+    "image_urls": ["url", "url", "url"],
+    "tags": ["some tags"]
+  },
+  {
+    "title": "Mexican Cuisine",
+    "description": "Some description",
+    "categoryIdentifiers": {
+      "yelp": "mexican",
+      "google": {
+        "type": "restaurant",
+        "keyword": "mexican"
+      }
+    },
+    "image_urls": ["url", "url", "url"],
+    "tags": ["some tags"]
+  },
+  {
+    "title": "Indian Cuisine",
+    "description": "Some description",
+    "categoryIdentifiers": {
+      "yelp": "indpak",
+      "google": {
+        "type": "restaurant",
+        "keyword": "indian"
+      }
+    },
+    "image_urls": ["url", "url", "url"],
+    "tags": ["some tags"]
+  },
+  {
+    "title": "Chinese Cuisine",
+    "description": "Some description",
+    "categoryIdentifiers": {
+      "yelp": "chinese",
+      "google": {
+        "type": "restaurant",
+        "keyword": "chinese"
+      }
+    },
+    "image_urls": ["url", "url", "url"],
+    "tags": ["asia"]
+  },
+  {
+    "title": "Japanese Cuisine",
+    "description": "Some description",
+    "categoryIdentifiers": {
+      "yelp": "japanese",
+      "google": {
+        "type": "restaurant",
+        "keyword": "japanese"
+      }
+    },
+    "image_urls": ["url", "url", "url"],
+    "tags": ["asia"]
+  },
+  {
+    "title": "Ramen",
+    "description": "Some description",
+    "categoryIdentifiers": {
+      "yelp": "ramen",
+      "google": {
+        "type": "food",
+        "keyword": "ramen"
+      }
+    },
+    "image_urls": ["url", "url", "url"],
+    "tags": ["japanese", "korean", "asia"]
+  },
+  {
+    "title": "Noodles",
+    "description": "Some description",
+    "categoryIdentifiers": {
+      "yelp": "noodles",
+      "google": {
+        "type": "food",
+        "keyword": "noodles"
+      }
+    },
+    "image_urls": ["url", "url", "url"],
+    "tags": ["chinese", "asia"]
+  },
+  {
+    "title": "Seafood",
+    "description": "Some description",
+    "categoryIdentifiers": {
+      "yelp": "seafood",
+      "google": {
+        "type": "food",
+        "keyword": "seafood"
+      }
+    },
+    "image_urls": ["url", "url", "url"],
+    "tags": ["some tags"]
+  },
+  {
+    "title": "Bagels",
+    "description": "Some description",
+    "categoryIdentifiers": {
+      "yelp": "bagels",
+      "google": {
+        "type": "food",
+        "keyword": "bagels"
+      }
+    },
+    "image_urls": ["url", "url", "url"],
+    "tags": ["breakfast"]
+  },
+  {
+    "title": "Waffles",
+    "description": "Some description",
+    "categoryIdentifiers": {
+      "yelp": "waffles",
+      "google": {
+        "type": "food",
+        "keyword": "waffles"
+      }
+    },
+    "image_urls": ["url", "url", "url"],
+    "tags": ["breakfast"]
+  }
+]

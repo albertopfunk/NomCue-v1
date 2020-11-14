@@ -1,6 +1,7 @@
 [
   {
     "title": "Italian Cuisine",
+    "slug": "italian",
     "description": "Some description",
     "categoryIdentifiers": {
       "yelp": "italian",
@@ -14,6 +15,7 @@
   },
   {
     "title": "Mexican Cuisine",
+    "slug": "mexican",
     "description": "Some description",
     "categoryIdentifiers": {
       "yelp": "mexican",
@@ -27,6 +29,7 @@
   },
   {
     "title": "Indian Cuisine",
+    "slug": "indian",
     "description": "Some description",
     "categoryIdentifiers": {
       "yelp": "indpak",
@@ -40,6 +43,7 @@
   },
   {
     "title": "Chinese Cuisine",
+    "slug": "chinese",
     "description": "Some description",
     "categoryIdentifiers": {
       "yelp": "chinese",
@@ -53,6 +57,7 @@
   },
   {
     "title": "Japanese Cuisine",
+    "slug": "japanese",
     "description": "Some description",
     "categoryIdentifiers": {
       "yelp": "japanese",
@@ -66,6 +71,7 @@
   },
   {
     "title": "Ramen",
+    "slug": "ramen",
     "description": "Some description",
     "categoryIdentifiers": {
       "yelp": "ramen",
@@ -79,6 +85,7 @@
   },
   {
     "title": "Noodles",
+    "slug": "noodles",
     "description": "Some description",
     "categoryIdentifiers": {
       "yelp": "noodles",
@@ -92,6 +99,7 @@
   },
   {
     "title": "Seafood",
+    "slug": "seafood",
     "description": "Some description",
     "categoryIdentifiers": {
       "yelp": "seafood",
@@ -105,6 +113,7 @@
   },
   {
     "title": "Bagels",
+    "slug": "bagels",
     "description": "Some description",
     "categoryIdentifiers": {
       "yelp": "bagels",
@@ -118,6 +127,7 @@
   },
   {
     "title": "Waffles",
+    "slug": "waffles",
     "description": "Some description",
     "categoryIdentifiers": {
       "yelp": "waffles",

@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import React from 'react'
+import Link from 'next/link';
 
 export default function Activities({activities, error}) {
 
@@ -7,11 +7,13 @@ export default function Activities({activities, error}) {
     return <h1>OH NOOOOO</h1>
   }
 
+  console.log(activities)
+
   return (
     <div>
-      Hello
+      Hello activities
       <Link href={`/activities/theater`}>
-        <a>{`Go To ${activities.title}`}</a>
+        <a>{`Go To`}</a>
       </Link>
     </div>
   )
@@ -19,17 +21,9 @@ export default function Activities({activities, error}) {
 
 
 export async function getServerSideProps() {
-
-  return {
-    props: {places: []}, // will be passed to the page component as props
-  }
-}
-
-
-export async function getStaticProps() {
   try {
     const res = await fetch(
-      `${process.env.CLIENT_URL}/api/subCategories?name=activities`
+      `${process.env.CLIENT_URL}/api/activityCategories`
     );
 
     const activities = await res.json();
@@ -44,8 +38,8 @@ export async function getStaticProps() {
         error: null
       }
     }
-  } catch (error) {
-    console.error("Error =>", error);
+
+  } catch(error) {
     return {
       props: {
         activities: null,

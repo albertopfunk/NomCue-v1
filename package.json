@@ -17,6 +17,7 @@
     "@fullhuman/postcss-purgecss": "^3.0.0",
     "autoprefixer": "^10.0.2",
     "isomorphic-unfetch": "^3.1.0",
+    "mongodb": "^3.6.3",
     "next": "^10.0.1",
     "postcss-import": "^13.0.0",
     "react": "^17.0.1",

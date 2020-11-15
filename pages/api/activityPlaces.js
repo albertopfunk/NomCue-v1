@@ -58,7 +58,7 @@ export default async (req, res) => {
   try {
     const activity = await db
       .collection('activities')
-      .findOne({})
+      .findOne({slug})
     ;
   
     console.log("API ACTIVITTYYYYYY", activity, location, slug)

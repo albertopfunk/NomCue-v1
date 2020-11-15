@@ -12,7 +12,7 @@ export default function Activities({activities, error}) {
   return (
     <div>
       Hello activities
-      <Link href={`/activities/theater`}>
+      <Link href={`/activities/amusement-parks`}>
         <a>{`Go To`}</a>
       </Link>
     </div>

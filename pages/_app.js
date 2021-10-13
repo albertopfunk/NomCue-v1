@@ -1,7 +1,7 @@
 // import { useEffect, useState } from "react";
 // import { useRouter } from 'next/router'
 import { UserContextProvider } from "../components/global/UserContext";
-import "../css/tailwind.css";
+import 'tailwindcss/tailwind.css';
 
 function AppWrapper({ Component, pageProps }) {
   // const [isRouteLoading, setIsRouteLoading] = useState(false)

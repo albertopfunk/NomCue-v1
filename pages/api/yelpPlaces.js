@@ -1,4 +1,3 @@
-import fetch from "isomorphic-unfetch";
 import validParams from "../../data/validParams";
 
 export default async (req, res) => {

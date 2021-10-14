@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import fetch from "isomorphic-unfetch";
 import { UserContext } from "../../components/global/UserContext"
 
 
@@ -20,7 +19,7 @@ export default function ActivityPlaces() {
 
   async function fetchPlaces() {
     try {
-      const res = await fetch(`${process.env.CLIENT_URL}/api/activityPlaces`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_CLIENT_URL}/api/activityPlaces`, {
         method: "POST",
         body: JSON.stringify({
           slug,

@@ -1,5 +1,3 @@
-import fetch from "isomorphic-unfetch";
-
 export default async (req, res) => {
   const { value } = JSON.parse(req.body);
   const key = process.env.GOOGLE_KEY;

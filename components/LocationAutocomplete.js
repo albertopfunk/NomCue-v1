@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import fetch from "isomorphic-unfetch";
 import { UserContext } from "./global/UserContext";
 
 function LocationAutocomplete(props) {
@@ -88,7 +87,7 @@ function LocationAutocomplete(props) {
 
     try {
       const res = await fetch(
-        `${process.env.CLIENT_URL}/api/googleAutocomplete`,
+        `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/googleAutocomplete`,
         {
           method: "POST",
           body: JSON.stringify({ value }),

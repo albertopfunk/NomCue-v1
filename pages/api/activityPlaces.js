@@ -1,4 +1,3 @@
-import fetch from "isomorphic-unfetch";
 import { connectToDatabase } from "../../util/mongodb";
 
 async function getYelpPlaces(id, location) {

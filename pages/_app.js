@@ -1,42 +1,17 @@
-// import { useEffect, useState } from "react";
-// import { useRouter } from 'next/router'
+import "tailwindcss/tailwind.css";
+import MainHeader from "../components/MainHeader";
 import { UserContextProvider } from "../components/global/UserContext";
-import 'tailwindcss/tailwind.css';
 
 function AppWrapper({ Component, pageProps }) {
-  // const [isRouteLoading, setIsRouteLoading] = useState(false)
-  // const router = useRouter()
-
-  // useEffect(() => {
-  //   // setIsRouteLoading(false)
-  //   router.events.on("routeChangeStart", () => {
-  //     setIsRouteLoading(true)
-  //   });
-  //   router.events.on("routeChangeComplete", () => {
-  //     setIsRouteLoading(false)
-  //   });
-  //   router.events.on("routeChangeError", () => {
-  //     setIsRouteLoading(false)
-  //   });
-
-  //   return () => {
-  //     router.events.off("routeChangeStart", () => {
-  //       return;
-  //     });
-  
-  //     router.events.off("routeChangeComplete", () => {
-  //       return;
-  //     });
-  
-  //     router.events.off("routeChangeError", () => {
-  //       return;
-  //     });
-  //   }
-  // })
-
   return (
     <UserContextProvider>
-      <Component {...pageProps} />
+      <div className="h-screen bg-gray-50">
+        <MainHeader />
+        <Component {...pageProps} />
+        <footer>
+          <div>NomCue inc.</div>
+        </footer>
+      </div>
     </UserContextProvider>
   );
 }

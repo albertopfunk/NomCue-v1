@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "./global/UserContext";
 
 function LocationAutocomplete(props) {
@@ -126,11 +126,30 @@ function LocationAutocomplete(props) {
     setDebounceTimeout(currentTimeout);
   }
 
-  function chooseLocation(name) {
-    setLocationsInput("");
-    setLocations([]);
-    setIsUsingCombobox(false);
-    setLocation(name);
+  async function chooseLocation(id) {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/googleGio`,
+        {
+          method: "POST",
+          body: JSON.stringify({ id }),
+        }
+      );
+      const { lat, lng } = await res.json();
+
+      if (res.status !== 200) {
+        throw {
+          status: res.status,
+        };
+      }
+
+      setLocation({ lat, lng });
+      setLocationsInput("");
+      setLocations([]);
+      setIsUsingCombobox(false);
+    } catch (error) {
+      console.error("Error =>", error);
+    }
   }
 
   function resetAutocomplete() {
@@ -146,7 +165,7 @@ function LocationAutocomplete(props) {
         <br />
         <input
           className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
-          placeholder="jane@example.com"
+          placeholder="Los Angeles, CA"
           type="search"
           id={`${props.id}-search-locations`}
           name="input"
@@ -175,11 +194,11 @@ function LocationAutocomplete(props) {
                   tabIndex="-1"
                   role="option"
                   aria-selected={focusedLocation === `result-${i}`}
-                  onClick={() => chooseLocation(location.description)}
+                  onClick={() => chooseLocation(location.place_id)}
                   ref={(ref) => {
                     setLocationRefs(ref, i);
                   }}
-                  onKeyDown={(e) => onOptionKeyDown(e, location.description, i)}
+                  onKeyDown={(e) => onOptionKeyDown(e, location.place_id, i)}
                 >
                   {location.description}
                 </li>

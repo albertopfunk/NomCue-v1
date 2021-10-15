@@ -1,18 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { UserContext } from "../../components/global/UserContext"
+import LocationAutocomplete from "../../components/LocationAutocomplete";
 
 
 export default function ActivityPlaces() {
   const router = useRouter();
   const { slug } = router.query;
-  const { location, setLocation } = useContext(UserContext);
+  const { location } = useContext(UserContext);
   const [loadingPlaces, setLoadingPlaces] = useState(true);
   const [placesError, setPlacesError] = useState(false);
   const [places, setPlaces] = useState([]);
 
   useEffect(() => {
-    if (location && slug) {
+    if (location !== null && slug) {
       fetchPlaces();
     }
   }, [location]);
@@ -23,7 +24,7 @@ export default function ActivityPlaces() {
         method: "POST",
         body: JSON.stringify({
           slug,
-          location: {lat: 34.052235, lon: -118.243683}
+          location: {lat: location.lat, lon: location.lng}
         }),
       });
 
@@ -50,13 +51,11 @@ export default function ActivityPlaces() {
     return <h1>Page Loading...</h1>
   }
 
-  if (!location) {
+  if (location === null) {
     return (
       <div>
         <h2>Need Location</h2>
-        <button onClick={() => setLocation("Los Angeles, CA")}>
-          Choose Location
-        </button>
+        <LocationAutocomplete />
       </div>
     );
   }

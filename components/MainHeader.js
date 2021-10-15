@@ -15,9 +15,9 @@ function MainHeader() {
   }
 
   return (
-    <div className="bg-white h-16">
+    <div className="h-16 flex-shrink-0 bg-white">
       <header className="h-16 fixed top-0 right-0 left-0 bg-transparent text-center">
-        <div className="bg-red-100 absolute left-0 top-0 -bottom-1.5 rounded-br-full">
+        <div className="absolute left-0 top-0 -bottom-1.5 bg-red-100 rounded-br-full">
           <button type="button" aria-expanded={!isNavOpen} onClick={toggleNav}>
             open navigation
           </button>
@@ -47,7 +47,7 @@ function MainHeader() {
           <a>NomCue</a>
         </Link>
 
-        <div className="bg-red-100 absolute right-0 top-0 -bottom-1.5 rounded-bl-full">
+        <div className="absolute right-0 top-0 -bottom-1.5 bg-red-100 rounded-bl-full">
           <button
             type="button"
             aria-expanded={!areFiltersOpen}

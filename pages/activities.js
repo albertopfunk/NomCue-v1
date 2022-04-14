@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { connectToDatabase } from "../util/mongodb";
+import clientPromise from "../util/mongodb";
 
 export default function Activities({ activities, error }) {
   if (error) {
@@ -21,7 +21,8 @@ export default function Activities({ activities, error }) {
 
 export async function getServerSideProps() {
   try {
-    const { db } = await connectToDatabase();
+    const client = await clientPromise;
+    const db = client.db(process.env.MONGODB_DB);
 
     const res = await db.collection("activities").find({}).toArray();
     const activities = JSON.parse(JSON.stringify(res));

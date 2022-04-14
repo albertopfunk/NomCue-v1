@@ -3,30 +3,5 @@
     "eslint:recommended",
     "next",
     "prettier"
-  ],
-  "rules": {
-    "jsx-a11y/no-onchange": 0,
-    "jsx-a11y/anchor-is-valid": 0,
-    "react/react-in-jsx-scope": 0,
-    "react/prop-types": 0,
-    "no-console": ["warn", { "allow": ["error"] }]
-  },
-  "plugins": ["react", "import", "jsx-a11y"],
-  "parserOptions": {
-    "ecmaVersion": 2019,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "env": {
-    "es6": true,
-    "browser": true,
-    "node": true
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  }
+  ]
 }

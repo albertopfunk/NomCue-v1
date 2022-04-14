@@ -3,9 +3,9 @@ import Link from "next/link";
 
 import LocationAutocomplete from "./LocationAutocomplete";
 
-import MenuIcon from "../svgs/menu-icon.svg";
-import GearIcon from "../svgs/gear-icon.svg";
-import CloseIcon from "../svgs/close-icon.svg";
+// import MenuIcon from "../svgs/menu-icon.svg";
+// import GearIcon from "../svgs/gear-icon.svg";
+// import CloseIcon from "../svgs/close-icon.svg";
 
 function MainHeader() {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -35,7 +35,7 @@ function MainHeader() {
           >
             <span className="sr-only">open menu</span>
             <span className="flex h-11 w-11 bg-transparent">
-              {isNavOpen ? <CloseIcon /> : <MenuIcon />}
+              {isNavOpen ? <div className="h-20 w-20">X</div> : <div className="h-20 w-20">X</div>}
             </span>
           </button>
 
@@ -77,7 +77,7 @@ function MainHeader() {
           >
             <span className="sr-only">open filters</span>
             <span className="flex h-11 w-11 bg-transparent">
-              {areFiltersOpen ? <CloseIcon /> : <GearIcon />}
+              {areFiltersOpen ? <div className="h-20 w-20">X</div> : <div className="h-20 w-20">X</div>}
             </span>
           </button>
 

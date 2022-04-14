@@ -1,13 +1,12 @@
-import React from 'react'
-import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
 
-export default function Food({food, error}) {
-
+export default function Food({ food, error }) {
   if (error) {
-    return <h1>OH NOOOOO</h1>
+    return <h1>OH NOOOOO</h1>;
   }
 
-  console.log("FOOOOODDDD", food)
+  console.log("FOOOOODDDD", food);
 
   return (
     <div>
@@ -16,15 +15,12 @@ export default function Food({food, error}) {
         <a>{`Go To italian cuisine`}</a>
       </Link>
     </div>
-  )
+  );
 }
-
 
 export async function getServerSideProps() {
   try {
-    const res = await fetch(
-      `${process.env.CLIENT_URL}/api/foodCategories`
-    );
+    const res = await fetch(`${process.env.CLIENT_URL}/api/foodCategories`);
 
     const food = await res.json();
 
@@ -35,16 +31,15 @@ export async function getServerSideProps() {
     return {
       props: {
         food,
-        error: null
-      }
-    }
-
-  } catch(error) {
+        error: null,
+      },
+    };
+  } catch (error) {
     return {
       props: {
         food: null,
-        error
-      }
-    }
+        error,
+      },
+    };
   }
 }

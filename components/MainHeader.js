@@ -35,7 +35,11 @@ function MainHeader() {
           >
             <span className="sr-only">open menu</span>
             <span className="flex h-11 w-11 bg-transparent">
-              {isNavOpen ? <div className="h-20 w-20">X</div> : <div className="h-20 w-20">X</div>}
+              {isNavOpen ? (
+                <div className="h-20 w-20">X</div>
+              ) : (
+                <div className="h-20 w-20">X</div>
+              )}
             </span>
           </button>
 
@@ -77,7 +81,11 @@ function MainHeader() {
           >
             <span className="sr-only">open filters</span>
             <span className="flex h-11 w-11 bg-transparent">
-              {areFiltersOpen ? <div className="h-20 w-20">X</div> : <div className="h-20 w-20">X</div>}
+              {areFiltersOpen ? (
+                <div className="h-20 w-20">X</div>
+              ) : (
+                <div className="h-20 w-20">X</div>
+              )}
             </span>
           </button>
 

@@ -1,4 +1,4 @@
-import "tailwindcss/tailwind.css";
+import "../styles/globals.css";
 import MainHeader from "../components/MainHeader";
 import MainFooter from "../components/MainFooter";
 import { UserContextProvider } from "../components/global/UserContext";
